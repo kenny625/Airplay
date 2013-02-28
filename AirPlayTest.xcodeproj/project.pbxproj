@@ -23,6 +23,7 @@
 		8C1E50FD16DCEDA800F19D28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50D816DCEDA800F19D28 /* Foundation.framework */; };
 		8C1E510516DCEDA800F19D28 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C1E510316DCEDA800F19D28 /* InfoPlist.strings */; };
 		8C1E510816DCEDA800F19D28 /* AirPlayTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E510716DCEDA800F19D28 /* AirPlayTestTests.m */; };
+		8C1E511416DCF0C300F19D28 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E511316DCF0C300F19D28 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		8C1E510416DCEDA800F19D28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C1E510616DCEDA800F19D28 /* AirPlayTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirPlayTestTests.h; sourceTree = "<group>"; };
 		8C1E510716DCEDA800F19D28 /* AirPlayTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirPlayTestTests.m; sourceTree = "<group>"; };
+		8C1E511316DCF0C300F19D28 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		8C1E511516DCF25800F19D28 /* MPAudioDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAudioDeviceController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C1E511416DCF0C300F19D28 /* MediaPlayer.framework in Frameworks */,
 				8C1E50D716DCEDA800F19D28 /* UIKit.framework in Frameworks */,
 				8C1E50D916DCEDA800F19D28 /* Foundation.framework in Frameworks */,
 				8C1E50DB16DCEDA800F19D28 /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +91,7 @@
 		8C1E50CA16DCEDA800F19D28 = {
 			isa = PBXGroup;
 			children = (
+				8C1E511316DCF0C300F19D28 /* MediaPlayer.framework */,
 				8C1E50DC16DCEDA800F19D28 /* AirPlayTest */,
 				8C1E510016DCEDA800F19D28 /* AirPlayTestTests */,
 				8C1E50D516DCEDA800F19D28 /* Frameworks */,
@@ -117,6 +122,7 @@
 		8C1E50DC16DCEDA800F19D28 /* AirPlayTest */ = {
 			isa = PBXGroup;
 			children = (
+				8C1E511516DCF25800F19D28 /* MPAudioDeviceController.h */,
 				8C1E50E516DCEDA800F19D28 /* HWAppDelegate.h */,
 				8C1E50E616DCEDA800F19D28 /* HWAppDelegate.m */,
 				8C1E50EE16DCEDA800F19D28 /* MainStoryboard.storyboard */,
@@ -382,9 +388,14 @@
 		8C1E510C16DCEDA800F19D28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirPlayTest/AirPlayTest-Prefix.pch";
 				INFOPLIST_FILE = "AirPlayTest/AirPlayTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -393,9 +404,14 @@
 		8C1E510D16DCEDA800F19D28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirPlayTest/AirPlayTest-Prefix.pch";
 				INFOPLIST_FILE = "AirPlayTest/AirPlayTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -454,6 +470,7 @@
 				8C1E510D16DCEDA800F19D28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C1E510E16DCEDA800F19D28 /* Build configuration list for PBXNativeTarget "AirPlayTestTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +479,7 @@
 				8C1E511016DCEDA800F19D28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
