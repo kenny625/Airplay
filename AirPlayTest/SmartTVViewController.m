@@ -1,0 +1,191 @@
+//
+//  SmartTVViewController.m
+//  SmartTVGesture
+//
+//  Created by Lin Cooper on 13/2/26.
+//  Copyright (c) 2013年 Lin Cooper. All rights reserved.
+//
+
+#import "SmartTVViewController.h"
+
+@implementation SmartTVViewController
+@synthesize locationManager;
+- (void)viewDidLoad
+{
+
+    tableData = [[NSArray alloc] initWithObjects:@"LivingRoom" , @"BedRoom" , @"DiningRoom"  , nil];
+    [super viewDidLoad];
+    flagShowing=NO;
+    
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45)];
+    
+    //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
+    alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"確認", nil];
+    //    [alertView setBackgroundColor:[UIColor redColor]];
+    tableView=[[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)
+                                           style:UITableViewStyleGrouped];
+    [tableView setDelegate:self];
+    [tableView setDataSource:self];
+    
+    [alertView addSubview:tableView];
+    
+    //navigationBar
+    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:nil];
+    
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"分享"
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(clickRightButton)];
+    [navigationBar pushNavigationItem:navigationItem animated:NO];
+    [navigationItem setRightBarButtonItem:rightButton];
+    [self.view addSubview:navigationBar];
+    
+    
+    //photo
+    UIImageView* photoView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 44, 320, 420)];
+    [photoView setImage:[UIImage imageNamed:@"photo.jpg"]];
+    
+    [self.view addSubview:photoView];
+    
+    animeView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 44, 320, 420)];
+    [animeView setImage:[UIImage imageNamed:@"photo.jpg"]];
+    [photoView setBackgroundColor:[UIColor redColor]];
+    //campass
+    locationManager=[[CLLocationManager alloc] init];
+	locationManager.delegate=self;
+    locationManager.headingFilter = 3;
+    
+    if (locationManager.headingAvailable){
+        NSLog(@"start campass");
+        [locationManager startUpdatingHeading];
+    }
+    
+}
+-(void)clickRightButton{
+    if([_mode integerValue]==0){
+        //        [self.view addSubview:alertView];
+        [alertView show];
+    }
+    else if([_mode integerValue]==1){
+        [self.view addSubview:realSenseView];
+        flagShowing=YES;
+    }
+}
+
+
+-(void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event{
+    if([_mode integerValue]==1){
+        if(flagShowing){
+            touchPoint=[[touches anyObject] locationInView:self.view];
+        }
+    }
+}
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    if([_mode integerValue]==1){
+        
+        if(flagShowing){
+            CGPoint endPoint=[[touches anyObject] locationInView:self.view];
+            if(touchPoint.y-endPoint.y>100){
+                [realSenseView removeFromSuperview];
+                flagShowing=NO;
+                animeView.frame=CGRectMake(0, 44, 320, 420);
+                [self.view addSubview:animeView];
+                [UIView beginAnimations:@"state" context:nil];
+                [UIView setAnimationDuration: 1];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDidStopSelector:@selector(hideAnime) ];
+                
+                animeView.frame=CGRectMake(0,-420, 320, 420);
+                [UIView commitAnimations];
+            }
+            else{
+                
+            }
+        }
+    }
+}
+-(void)hideAnime{
+    [animeView removeFromSuperview];
+}
+/*
+ -(void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event{
+ CGPoint p = [[touches anyObject] locationInView:self];
+ if((p.x-touchPoint.x)*(p.x-touchPoint.x)+
+ (p.y-touchPoint.y)*(p.y-touchPoint.y)<radius*radius){
+ for(DisplayData* d in targets){
+ [d setSelect:NO];
+ }
+ }
+ else{
+ 
+ float td=[self touchDegree:p];
+ for(DisplayData* d in targets){
+ if(td-[d getDegree]<0){
+ td+=360;
+ }
+ if(td-[d getDegree]<=targetWidth){
+ [d setSelect:YES];
+ }
+ }
+ }
+ [self setNeedsDisplay];
+ }
+ 
+ */
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    // Convert Degree to Radian and move the needle
+    if (newHeading.headingAccuracy > 0) {
+        CLLocationDirection theHeading = newHeading.magneticHeading;
+        [realSenseView updateDegree:theHeading];
+        //        NSLog(@"!!%f",theHeading);
+    }
+}
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
+    //        NSLog(@"orientation change");
+    return YES;
+}
+
+
+//TableView
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    //初始化cell并指定其类型，也可自定义cell
+    
+    UITableViewCell *cell = (UITableViewCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if(cell == nil)  {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero  reuseIdentifier:CellIdentifier] ;
+        
+    }
+    [[cell textLabel]  setText:[tableData objectAtIndex:indexPath.row]];
+    
+    
+    return cell;
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+    
+    
+}
+//指定有多少个分区(Section)，默认为1
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+    
+}
+
+
+@end

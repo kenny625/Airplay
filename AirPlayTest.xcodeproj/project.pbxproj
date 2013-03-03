@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31F94DF016E3626500924C83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DEF16E3626500924C83 /* CoreLocation.framework */; };
+		31F94DF216E3627300924C83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DF116E3627300924C83 /* QuartzCore.framework */; };
+		31F94DF416E3627C00924C83 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DF316E3627C00924C83 /* CoreMotion.framework */; };
+		31F94DF716E3656100924C83 /* SmartTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94DF616E3656100924C83 /* SmartTVViewController.m */; };
+		31F94DFA16E3657600924C83 /* RealSenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94DF916E3657600924C83 /* RealSenseView.m */; };
+		31F94DFD16E3658A00924C83 /* DisplayData.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94DFC16E3658A00924C83 /* DisplayData.m */; };
+		31F94DFF16E3665700924C83 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31F94DFE16E3665700924C83 /* photo.jpg */; };
+		31F94E0216E3710600924C83 /* TestModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94E0116E3710600924C83 /* TestModeViewController.m */; };
+		31F94E0516E3742C00924C83 /* SetTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94E0416E3742C00924C83 /* SetTVViewController.m */; };
 		8C1E50D716DCEDA800F19D28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50D616DCEDA800F19D28 /* UIKit.framework */; };
 		8C1E50D916DCEDA800F19D28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50D816DCEDA800F19D28 /* Foundation.framework */; };
 		8C1E50DB16DCEDA800F19D28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50DA16DCEDA800F19D28 /* CoreGraphics.framework */; };
@@ -37,6 +46,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31F94DEF16E3626500924C83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		31F94DF116E3627300924C83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		31F94DF316E3627C00924C83 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		31F94DF516E3656100924C83 /* SmartTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartTVViewController.h; sourceTree = "<group>"; };
+		31F94DF616E3656100924C83 /* SmartTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartTVViewController.m; sourceTree = "<group>"; };
+		31F94DF816E3657600924C83 /* RealSenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealSenseView.h; sourceTree = "<group>"; };
+		31F94DF916E3657600924C83 /* RealSenseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealSenseView.m; sourceTree = "<group>"; };
+		31F94DFB16E3658A00924C83 /* DisplayData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayData.h; sourceTree = "<group>"; };
+		31F94DFC16E3658A00924C83 /* DisplayData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayData.m; sourceTree = "<group>"; };
+		31F94DFE16E3665700924C83 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
+		31F94E0016E3710600924C83 /* TestModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestModeViewController.h; path = ../TestModeViewController.h; sourceTree = "<group>"; };
+		31F94E0116E3710600924C83 /* TestModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModeViewController.m; path = ../TestModeViewController.m; sourceTree = "<group>"; };
+		31F94E0316E3742C00924C83 /* SetTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetTVViewController.h; path = ../SetTVViewController.h; sourceTree = "<group>"; };
+		31F94E0416E3742C00924C83 /* SetTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetTVViewController.m; path = ../SetTVViewController.m; sourceTree = "<group>"; };
 		8C1E50D316DCEDA800F19D28 /* AirPlayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPlayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1E50D616DCEDA800F19D28 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8C1E50D816DCEDA800F19D28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +91,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F94DF416E3627C00924C83 /* CoreMotion.framework in Frameworks */,
+				31F94DF216E3627300924C83 /* QuartzCore.framework in Frameworks */,
+				31F94DF016E3626500924C83 /* CoreLocation.framework in Frameworks */,
 				8C1E511416DCF0C300F19D28 /* MediaPlayer.framework in Frameworks */,
 				8C1E50D716DCEDA800F19D28 /* UIKit.framework in Frameworks */,
 				8C1E50D916DCEDA800F19D28 /* Foundation.framework in Frameworks */,
@@ -91,7 +117,6 @@
 		8C1E50CA16DCEDA800F19D28 = {
 			isa = PBXGroup;
 			children = (
-				8C1E511316DCF0C300F19D28 /* MediaPlayer.framework */,
 				8C1E50DC16DCEDA800F19D28 /* AirPlayTest */,
 				8C1E510016DCEDA800F19D28 /* AirPlayTestTests */,
 				8C1E50D516DCEDA800F19D28 /* Frameworks */,
@@ -111,6 +136,10 @@
 		8C1E50D516DCEDA800F19D28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31F94DF316E3627C00924C83 /* CoreMotion.framework */,
+				31F94DF116E3627300924C83 /* QuartzCore.framework */,
+				31F94DEF16E3626500924C83 /* CoreLocation.framework */,
+				8C1E511316DCF0C300F19D28 /* MediaPlayer.framework */,
 				8C1E50D616DCEDA800F19D28 /* UIKit.framework */,
 				8C1E50D816DCEDA800F19D28 /* Foundation.framework */,
 				8C1E50DA16DCEDA800F19D28 /* CoreGraphics.framework */,
@@ -122,6 +151,7 @@
 		8C1E50DC16DCEDA800F19D28 /* AirPlayTest */ = {
 			isa = PBXGroup;
 			children = (
+				31F94DFE16E3665700924C83 /* photo.jpg */,
 				8C1E511516DCF25800F19D28 /* MPAudioDeviceController.h */,
 				8C1E50E516DCEDA800F19D28 /* HWAppDelegate.h */,
 				8C1E50E616DCEDA800F19D28 /* HWAppDelegate.m */,
@@ -129,6 +159,16 @@
 				8C1E50F116DCEDA800F19D28 /* HWViewController.h */,
 				8C1E50F216DCEDA800F19D28 /* HWViewController.m */,
 				8C1E50DD16DCEDA800F19D28 /* Supporting Files */,
+				31F94DF516E3656100924C83 /* SmartTVViewController.h */,
+				31F94DF616E3656100924C83 /* SmartTVViewController.m */,
+				31F94E0016E3710600924C83 /* TestModeViewController.h */,
+				31F94E0116E3710600924C83 /* TestModeViewController.m */,
+				31F94E0316E3742C00924C83 /* SetTVViewController.h */,
+				31F94E0416E3742C00924C83 /* SetTVViewController.m */,
+				31F94DF816E3657600924C83 /* RealSenseView.h */,
+				31F94DF916E3657600924C83 /* RealSenseView.m */,
+				31F94DFB16E3658A00924C83 /* DisplayData.h */,
+				31F94DFC16E3658A00924C83 /* DisplayData.m */,
 			);
 			path = AirPlayTest;
 			sourceTree = "<group>";
@@ -243,6 +283,7 @@
 				8C1E50EB16DCEDA800F19D28 /* Default@2x.png in Resources */,
 				8C1E50ED16DCEDA800F19D28 /* Default-568h@2x.png in Resources */,
 				8C1E50F016DCEDA800F19D28 /* MainStoryboard.storyboard in Resources */,
+				31F94DFF16E3665700924C83 /* photo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +321,11 @@
 				8C1E50E316DCEDA800F19D28 /* main.m in Sources */,
 				8C1E50E716DCEDA800F19D28 /* HWAppDelegate.m in Sources */,
 				8C1E50F316DCEDA800F19D28 /* HWViewController.m in Sources */,
+				31F94DF716E3656100924C83 /* SmartTVViewController.m in Sources */,
+				31F94DFA16E3657600924C83 /* RealSenseView.m in Sources */,
+				31F94DFD16E3658A00924C83 /* DisplayData.m in Sources */,
+				31F94E0216E3710600924C83 /* TestModeViewController.m in Sources */,
+				31F94E0516E3742C00924C83 /* SetTVViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +441,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirPlayTest/AirPlayTest-Prefix.pch";
 				INFOPLIST_FILE = "AirPlayTest/AirPlayTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -411,7 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirPlayTest/AirPlayTest-Prefix.pch";
 				INFOPLIST_FILE = "AirPlayTest/AirPlayTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

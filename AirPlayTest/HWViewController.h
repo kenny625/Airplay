@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HWViewController : UIViewController
-
+@property (nonatomic,strong)IBOutlet UISegmentedControl* modeButton;
 @end
