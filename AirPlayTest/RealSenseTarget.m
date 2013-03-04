@@ -9,11 +9,13 @@
 #import "RealSenseTarget.h"
 
 @implementation RealSenseTarget
-- (id)initWithTarget:(DisplayData*)t{
+- (id)initWithTarget:(DisplayData*)t Delegate:(id<touchprotocol>)d{
     self= [super initWithFrame:CGRectMake(0,0, 30,30)];
     if(self){
         target=t;
+        delegate=d;
         myDegree=[t getDegree];
+        [self setUserInteractionEnabled:YES];
         [self setImage:[UIImage imageNamed:@"tvicon.jpg"]];
         [self setBackgroundColor:[target getColor]];
         
@@ -24,8 +26,12 @@
         [label setBackgroundColor: [target getColor]];
         [self addSubview:label];
     }
-return self;
-
+    return self;
+    
+}
+-(void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event{
+    //    NSLog(@"touch realsense traget");
+    [delegate touchAt:[target getSelfID]];
 }
 -(NSUInteger)getTVID{
     return [target getTVID];
@@ -37,7 +43,7 @@ return self;
     switch (selectSize) {
         case 0:
             radius=15;
-         
+            
             break;
         case 1:
             radius=20;
@@ -68,8 +74,8 @@ return self;
         x=160;
     }
     self.frame=CGRectMake(x-radius, 0, radius*2, radius*2);
-
-
+    
+    
 }
 -(float)getDegree{
     return myDegree;
@@ -82,9 +88,9 @@ return self;
 }
 -(void)setSelect:(bool)f{
     flagSelect=f;
-    [self setSize:3];
-    
-
+    if(f){
+        [self setSize:3];
+    }
 }
 -(bool)getSelect{
     return flagSelect;

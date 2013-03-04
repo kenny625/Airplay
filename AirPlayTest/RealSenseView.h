@@ -11,8 +11,10 @@
 #import "RealSenseTarget.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "MPAudioDeviceController.h"
-@interface RealSenseView : UIView{
-    Boolean flagShowing;
+
+@interface RealSenseView : UIView<touchprotocol>{
+    bool flagShowing;
+    bool flagSelectTarget;
     CGPoint touchPoint;
     int targetCount;
     int targetWidth;
@@ -24,4 +26,5 @@
 - (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t Controller:(MPAudioDeviceController *)c;
 -(void)updateDegree:(float)d;
 -(void)showOnTV;
+-(void)setShowing:(bool)f;
 @end

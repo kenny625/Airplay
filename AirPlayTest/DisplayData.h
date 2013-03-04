@@ -27,4 +27,5 @@
 -(NSString*)getName;
 -(void)setTVID:(NSUInteger) x;
 -(NSUInteger)getTVID;
+-(int)getSelfID;
 @end

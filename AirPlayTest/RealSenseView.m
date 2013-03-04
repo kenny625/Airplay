@@ -15,6 +15,7 @@
     if(self){
         audoDeviceController=c;
         [self setBackgroundColor:[UIColor blackColor]];
+        
         flagShowing=NO;
         
         targets=t;
@@ -24,14 +25,16 @@
         
         realSenseTargets=[[NSMutableArray alloc]initWithCapacity:0];
         for(DisplayData* d in targets){
-            RealSenseTarget* t=[[RealSenseTarget alloc]initWithTarget:d];
+            RealSenseTarget* t=[[RealSenseTarget alloc]initWithTarget:d Delegate:self];
             [realSenseTargets addObject:t];
             [self addSubview:t];
         }
     }
     return self;
 }
-
+-(void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event{
+    NSLog(@"touch realsense");
+}
 -(float)degreeToAngle:(float)d{
     return d/180*M_PI;
     
@@ -44,6 +47,26 @@
 }
 
 -(void)updateDegree:(float)d{
+    if(!flagShowing){
+        return;
+    }
+    if(flagSelectTarget){
+        float t=d-pointDegree;
+        if(t<0){
+            t=-t;
+        }
+        if(t>180){
+            t=360-t;
+        }
+        
+        if(t>45){
+            flagSelectTarget=NO;
+        }
+        else{
+            return;
+        }
+    }
+    
     if(targets.count==0){
         return;
     }
@@ -96,6 +119,21 @@
         
     }
 }
-
-
+-(void)touchAt:(int)i{
+    NSLog(@"touch %d",i);
+    flagSelectTarget=YES;
+    for(RealSenseTarget* t in realSenseTargets){
+        [t setSelect:NO];
+        [t setSize:0];
+    }
+    RealSenseTarget* t=[realSenseTargets objectAtIndex:i];
+    [t setSelect:YES];
+    
+        for(RealSenseTarget* tmp in realSenseTargets){
+            [tmp setDegree:[t getDegree]];
+        }
+}
+-(void)setShowing:(bool)f{
+    flagShowing=YES;
+}
 @end

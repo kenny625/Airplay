@@ -86,7 +86,7 @@
                     
                     
                     NSLog(@"idx=%d",idx);
-                     [audoDeviceController pickRouteAtIndex:idx];
+//                     [audoDeviceController pickRouteAtIndex:idx];
                      //有多台apple TV時，把這個idx存到一個地方，之後就可以根據idx選要用哪一台mirror
                      
                 }

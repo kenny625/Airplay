@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DisplayData.h"
-
+@protocol touchprotocol
+-(void)touchAt:(int)i;
+@end
 @interface RealSenseTarget : UIImageView{
     DisplayData* target;
     float pointDegree;
@@ -16,8 +18,11 @@
     bool flagSelect;
     int selectSize;
     UILabel* label;
+    id<touchprotocol> delegate;
+    
+    
 }
-- (id)initWithTarget:(DisplayData*)t;
+- (id)initWithTarget:(DisplayData*)t Delegate:(id<touchprotocol>)d;
 -(void)setDegree:(float)d;
 -(float)getDegree;
 -(void)setSize:(int)s;

@@ -73,4 +73,7 @@ return color;
 -(NSUInteger)getTVID{
     return idx;
 }
+-(int)getSelfID{
+    return selfId;
+}
 @end

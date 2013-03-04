@@ -51,6 +51,7 @@
 		31EDF83E16E4676900B395D0 /* RealSenseTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealSenseTarget.h; sourceTree = "<group>"; };
 		31EDF83F16E4676900B395D0 /* RealSenseTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealSenseTarget.m; sourceTree = "<group>"; };
 		31EDF84116E46F6E00B395D0 /* tvicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tvicon.jpg; sourceTree = "<group>"; };
+		31EDF84416E4B7C700B395D0 /* TouchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouchProtocol.h; path = ../TouchProtocol.h; sourceTree = "<group>"; };
 		31F94DEF16E3626500924C83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		31F94DF116E3627300924C83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31F94DF316E3627C00924C83 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -165,12 +166,13 @@
 				8C1E50F116DCEDA800F19D28 /* HWViewController.h */,
 				8C1E50F216DCEDA800F19D28 /* HWViewController.m */,
 				8C1E50DD16DCEDA800F19D28 /* Supporting Files */,
+				31EDF84416E4B7C700B395D0 /* TouchProtocol.h */,
+				31F94E0616E37E1400924C83 /* SetTVViewController.h */,
+				31F94E0716E37E1400924C83 /* SetTVViewController.m */,
 				31F94DF516E3656100924C83 /* SmartTVViewController.h */,
 				31F94DF616E3656100924C83 /* SmartTVViewController.m */,
 				31F94E0016E3710600924C83 /* TestModeViewController.h */,
 				31F94E0116E3710600924C83 /* TestModeViewController.m */,
-				31F94E0616E37E1400924C83 /* SetTVViewController.h */,
-				31F94E0716E37E1400924C83 /* SetTVViewController.m */,
 				31F94DF816E3657600924C83 /* RealSenseView.h */,
 				31F94DF916E3657600924C83 /* RealSenseView.m */,
 				31EDF83E16E4676900B395D0 /* RealSenseTarget.h */,

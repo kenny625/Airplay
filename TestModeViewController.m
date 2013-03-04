@@ -18,13 +18,7 @@
     
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
     //    tableData=[[appDelegate getTargets] copy];
-    tableData=[[NSMutableArray alloc]initWithCapacity:1];
-    DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:@"iphone"];
-    [d setTVID:0];
-    [tableData addObject:d];
-    for(DisplayData* d in [appDelegate getTargets]){
-        [tableData addObject:d];
-    }
+    tableData=[appDelegate getTargets];
     
     
     
@@ -32,16 +26,25 @@
     
     flagShowing=NO;
     
-    //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
-    alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-    //    [alertView setBackgroundColor:[UIColor redColor]];
-    tableView=[[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)
-                                           style:UITableViewStyleGrouped];
-    [tableView setDelegate:self];
-    [tableView setDataSource:self];
-    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection: 0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [alertView addSubview:tableView];
+    tvActionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"iPhone", nil];
     
+    
+    for(DisplayData* d in tableData){
+        [tvActionSheet addButtonWithTitle:[d getName]];
+    }
+    tvActionSheet.cancelButtonIndex = [tvActionSheet addButtonWithTitle:@"Cancel"];
+    
+    /*
+     //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
+     alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+     //    [alertView setBackgroundColor:[UIColor redColor]];
+     tableView=[[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)
+     style:UITableViewStyleGrouped];
+     [tableView setDelegate:self];
+     [tableView setDataSource:self];
+     [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection: 0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+     [alertView addSubview:tableView];
+     */
     //navigationBar
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     
@@ -85,18 +88,21 @@
 }
 -(void)clickLeftButton{
     UIStoryboard *storyboard = self.storyboard;
-    
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate getTVController] pickRouteAtIndex:0 ];
     [self.presentingViewController dismissModalViewControllerAnimated:YES];
 }
 
 -(void)clickRightButton{
     if([_mode integerValue]==0){
         //        [self.view addSubview:alertView];
-        [alertView show];
+        //        [alertView show];
+        [tvActionSheet showInView:self.view];
     }
     else if([_mode integerValue]==1){
         [self.view addSubview:realSenseView];
         flagShowing=YES;
+        [realSenseView setShowing:YES];
     }
 }
 
@@ -113,6 +119,7 @@
         
         if(flagShowing){
             CGPoint endPoint=[[touches anyObject] locationInView:self.view];
+            [realSenseView setShowing:NO];
             [realSenseView removeFromSuperview];
             flagShowing=NO;
             if(touchPoint.y-endPoint.y>100){
@@ -180,47 +187,64 @@
 }
 
 
-//TableView
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    //初始化cell并指定其类型，也可自定义cell
-    
-    UITableViewCell *cell = (UITableViewCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(cell == nil)  {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero  reuseIdentifier:CellIdentifier] ;
+    if(buttonIndex==0){
+        HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [[appDelegate getTVController] pickRouteAtIndex:0];
+    }
+    else if(buttonIndex==tvActionSheet.cancelButtonIndex){
+        return;
+    }
+    else{
+        NSLog(@"%d",buttonIndex);
+        HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:(buttonIndex-1)] getTVID]];
         
     }
-    DisplayData* d=[tableData objectAtIndex:indexPath.row];
-    [[cell textLabel]  setText:[d getName]];
-    
-    return cell;
-    
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return tableData.count;
-    
-    
-}
-//指定有多少个分区(Section)，默认为1
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
-    
-}
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"select %d",indexPath.row);
-    
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-    
-    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
-}
-
+/*
+ //TableView
+ 
+ -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+ 
+ 
+ static NSString *CellIdentifier = @"Cell";
+ 
+ //初始化cell并指定其类型，也可自定义cell
+ 
+ UITableViewCell *cell = (UITableViewCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
+ 
+ if(cell == nil)  {
+ cell = [[UITableViewCell alloc] initWithFrame:CGRectZero  reuseIdentifier:CellIdentifier] ;
+ 
+ }
+ DisplayData* d=[tableData objectAtIndex:indexPath.row];
+ [[cell textLabel]  setText:[d getName]];
+ 
+ return cell;
+ 
+ }
+ - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+ return tableData.count;
+ 
+ 
+ }
+ //指定有多少个分区(Section)，默认为1
+ 
+ - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+ 
+ return 1;
+ 
+ }
+ - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ NSLog(@"select %d",indexPath.row);
+ 
+ [alertView dismissWithClickedButtonIndex:0 animated:YES];
+ 
+ HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+ [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
+ }
+ */
 @end
