@@ -15,6 +15,7 @@
     float myDegree;
     bool flagSelect;
     int selectSize;
+    UILabel* label;
 }
 - (id)initWithTarget:(DisplayData*)t;
 -(void)setDegree:(float)d;

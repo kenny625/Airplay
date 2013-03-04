@@ -17,7 +17,7 @@
     [super viewDidLoad];
     
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    tableData=[[appDelegate getTargets] copy];
+    //    tableData=[[appDelegate getTargets] copy];
     tableData=[[NSMutableArray alloc]initWithCapacity:1];
     DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:@"iphone"];
     [d setTVID:0];
@@ -28,7 +28,7 @@
     
     
     
-    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:[appDelegate getTargets] Controller:[appDelegate getTVController]];
     
     flagShowing=NO;
     
@@ -39,7 +39,7 @@
                                            style:UITableViewStyleGrouped];
     [tableView setDelegate:self];
     [tableView setDataSource:self];
-    
+    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection: 0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     [alertView addSubview:tableView];
     
     //navigationBar

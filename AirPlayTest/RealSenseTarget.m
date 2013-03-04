@@ -17,11 +17,11 @@
         [self setImage:[UIImage imageNamed:@"tvicon.jpg"]];
         [self setBackgroundColor:[target getColor]];
         
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(-20,0, 100,20)];
+        label=[[UILabel alloc]initWithFrame:CGRectMake(-20,0, 100,20)];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setText:[target getName]];
         [label setTextColor:[UIColor whiteColor]];
-        [label setBackgroundColor: [UIColor clearColor]];
+        [label setBackgroundColor: [target getColor]];
         [self addSubview:label];
     }
 return self;
@@ -37,6 +37,7 @@ return self;
     switch (selectSize) {
         case 0:
             radius=15;
+         
             break;
         case 1:
             radius=20;
@@ -49,6 +50,7 @@ return self;
             break;
             
     }
+    label.frame=CGRectMake(-20, radius*2-20*radius/30.f, 100, 20*radius/30.f);
     float degree=myDegree-pointDegree;
     
     while(degree<0){
