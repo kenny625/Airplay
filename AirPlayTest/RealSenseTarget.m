@@ -56,7 +56,7 @@
             break;
             
     }
-    label.frame=CGRectMake(-20, radius*2-20*radius/30.f, 100, 20*radius/30.f);
+
     float degree=myDegree-pointDegree;
     
     while(degree<0){
@@ -64,16 +64,29 @@
     }
     
     if(degree<=180){
-        x=160+(degree/180.f*160.f);
+        x=175+(degree/180.f*145.f);
     }
     else{
-        x=((degree-180)/180.f*160.f);
+        x=((degree-180)/180.f*145.f);
     }
     
     if(selectSize==3){
         x=160;
     }
+    
+    float moveX=self.frame.origin.x-x;
+    if(moveX<0){
+        moveX=-moveX;
+    }
+    [UIView beginAnimations:@"state" context:nil];
+    [UIView setAnimationDuration: 1.5*moveX/320.f];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(hideAnime) ];
+    label.frame=CGRectMake(-20, radius*2-20*radius/30.f, 100, 20*radius/30.f);
     self.frame=CGRectMake(x-radius, 0, radius*2, radius*2);
+    [UIView commitAnimations];
+
     
     
 }

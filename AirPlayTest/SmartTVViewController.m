@@ -16,34 +16,50 @@
     
     [super viewDidLoad];
     
+    flagShowing=NO;
+    //toast
+    toast=[[UILabel alloc]initWithFrame:CGRectMake(50, 200, 200, 100)];
+    [toast setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+    [toast setTextColor:[UIColor whiteColor]];
+    [toast setTextAlignment:NSTextAlignmentCenter];
+    [toast setFont:[toast.font fontWithSize:25]];
+    [toast setNumberOfLines:2];
+    //realsense
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    //    tableData=[[appDelegate getTargets] copy];
     tableData=[appDelegate getTargets];
     
-    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];
     
-    flagShowing=NO;
     
-    //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
-    alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"", nil];
-    //    [alertView setBackgroundColor:[UIColor redColor]];
-    tableView=[[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)
-                                           style:UITableViewStyleGrouped];
-    [tableView setDelegate:self];
-    [tableView setDataSource:self];
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:[appDelegate getTargets] Controller:[appDelegate getTVController]];
     
-    [alertView addSubview:tableView];
+    
+    //menu
+    
+    tvActionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"iPhone", nil];
+    
+    
+    for(DisplayData* d in tableData){
+        [tvActionSheet addButtonWithTitle:[d getName]];
+    }
+    tvActionSheet.cancelButtonIndex = [tvActionSheet addButtonWithTitle:@"Cancel"];
+    
     
     //navigationBar
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:nil];
-    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"離開"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(clickLeftButton)];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"分享"
                                                                     style:UIBarButtonItemStyleDone
                                                                    target:self
                                                                    action:@selector(clickRightButton)];
     [navigationBar pushNavigationItem:navigationItem animated:NO];
+    [navigationItem setLeftBarButtonItem:leftButton];
     [navigationItem setRightBarButtonItem:rightButton];
     [self.view addSubview:navigationBar];
     
@@ -69,15 +85,27 @@
             [locationManager startUpdatingHeading];
         }
     }
+    
+    
+    [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
 }
+-(void)clickLeftButton{
+    UIStoryboard *storyboard = self.storyboard;
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate getTVController] pickRouteAtIndex:0 ];
+    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+}
+
 -(void)clickRightButton{
     if([_mode integerValue]==0){
         //        [self.view addSubview:alertView];
-        [alertView show];
+        //        [alertView show];
+        [tvActionSheet showInView:self.view];
     }
     else if([_mode integerValue]==1){
         [self.view addSubview:realSenseView];
         flagShowing=YES;
+        [realSenseView setShowing:YES];
     }
 }
 
@@ -94,6 +122,7 @@
         
         if(flagShowing){
             CGPoint endPoint=[[touches anyObject] locationInView:self.view];
+            [realSenseView setShowing:NO];
             [realSenseView removeFromSuperview];
             flagShowing=NO;
             if(touchPoint.y-endPoint.y>100){
@@ -120,31 +149,6 @@
 -(void)hideAnime{
     [animeView removeFromSuperview];
 }
-/*
- -(void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event{
- CGPoint p = [[touches anyObject] locationInView:self];
- if((p.x-touchPoint.x)*(p.x-touchPoint.x)+
- (p.y-touchPoint.y)*(p.y-touchPoint.y)<radius*radius){
- for(DisplayData* d in targets){
- [d setSelect:NO];
- }
- }
- else{
- 
- float td=[self touchDegree:p];
- for(DisplayData* d in targets){
- if(td-[d getDegree]<0){
- td+=360;
- }
- if(td-[d getDegree]<=targetWidth){
- [d setSelect:YES];
- }
- }
- }
- [self setNeedsDisplay];
- }
- 
- */
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
@@ -161,48 +165,26 @@
 }
 
 
-//TableView
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if(buttonIndex==tvActionSheet.cancelButtonIndex){
+        return;
+    }
+    else if(buttonIndex==0){
+        HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [[appDelegate getTVController] pickRouteAtIndex:0];
+    }
     
-    
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    //初始化cell并指定其类型，也可自定义cell
-    
-    UITableViewCell *cell = (UITableViewCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(cell == nil)  {
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero  reuseIdentifier:CellIdentifier] ;
+    else{
+        NSLog(@"%d",buttonIndex);
+        HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:(buttonIndex-1)] getTVID]];
         
     }
-    DisplayData* d=[tableData objectAtIndex:indexPath.row];
-    [[cell textLabel]  setText:[d getName]];
-    
-    return cell;
-    
+    [toast removeFromSuperview];
+    [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return tableData.count;
-    
-    
+-(void)showToast{
+    [toast setText:@"請投影照片到\napple tv"];
+    [self.view addSubview:toast];
 }
-//指定有多少个分区(Section)，默认为1
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
-    
-}
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"select %d",indexPath.row);
-    
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-    
-    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
-}
-
-
 @end

@@ -11,18 +11,21 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RealSenseView.h"
 #import "HWAppDelegate.h"
-@interface SmartTVViewController : UIViewController<CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface SmartTVViewController : UIViewController<CLLocationManagerDelegate,UIActionSheetDelegate>{
     RealSenseView* realSenseView;
-    UIAlertView* alertView;
-    UITableView* tableView;
+    UIActionSheet* tvActionSheet;
     UIImageView* animeView;
-
+    UILabel* toast;
     bool flagShowing;
     CGPoint touchPoint;
     
     NSMutableArray* tableData;
+    
+    
 }
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
 @property (strong) NSNumber* mode;
+
+
 @end
