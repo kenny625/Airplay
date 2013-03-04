@@ -94,9 +94,11 @@
         
         if(flagShowing){
             CGPoint endPoint=[[touches anyObject] locationInView:self.view];
+            [realSenseView removeFromSuperview];
+            flagShowing=NO;
             if(touchPoint.y-endPoint.y>100){
-                [realSenseView removeFromSuperview];
-                flagShowing=NO;
+                
+                [realSenseView showOnTV];
                 animeView.frame=CGRectMake(0, 44, 320, 420);
                 [self.view addSubview:animeView];
                 [UIView beginAnimations:@"state" context:nil];
@@ -108,8 +110,9 @@
                 animeView.frame=CGRectMake(0,-420, 320, 420);
                 [UIView commitAnimations];
             }
-            else{
-                
+            else if(touchPoint.y-endPoint.y<-100){
+                HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+                [[appDelegate getTVController] pickRouteAtIndex:0 ];
             }
         }
     }

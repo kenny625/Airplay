@@ -66,8 +66,8 @@
         }
         [routes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            if ([[obj objectForKey:@"RouteSupportsAirPlayVideo"]intValue]==1
-                ||[[obj objectForKey:@"RouteSupportsAirPlayScreen"] boolValue]
+            if ([[obj objectForKey:@"RouteSupportsAirPlayScreen"] boolValue]
+              //  ||[[obj objectForKey:@"RouteSupportsAirPlayVideo"]intValue]==1
                 ) {
                 NSLog(@"is airplay");
                 NSDictionary *info = [obj objectForKey:@"AirPlayPortExtendedInfo"];

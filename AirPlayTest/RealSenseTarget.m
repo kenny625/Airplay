@@ -17,7 +17,8 @@
         [self setImage:[UIImage imageNamed:@"tvicon.jpg"]];
         [self setBackgroundColor:[target getColor]];
         
-        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0,0, 100,20)];
+        UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(-20,0, 100,20)];
+        [label setTextAlignment:NSTextAlignmentCenter];
         [label setText:[target getName]];
         [label setTextColor:[UIColor whiteColor]];
         [label setBackgroundColor: [UIColor clearColor]];
@@ -66,6 +67,7 @@ return self;
     }
     self.frame=CGRectMake(x-radius, 0, radius*2, radius*2);
 
+
 }
 -(float)getDegree{
     return myDegree;
@@ -79,6 +81,8 @@ return self;
 -(void)setSelect:(bool)f{
     flagSelect=f;
     [self setSize:3];
+    
+
 }
 -(bool)getSelect{
     return flagSelect;

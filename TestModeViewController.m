@@ -17,7 +17,16 @@
     [super viewDidLoad];
     
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-    tableData=[appDelegate getTargets];
+//    tableData=[[appDelegate getTargets] copy];
+    tableData=[[NSMutableArray alloc]initWithCapacity:1];
+    DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:@"iphone"];
+    [d setTVID:0];
+    [tableData addObject:d];
+    for(DisplayData* d in [appDelegate getTargets]){
+        [tableData addObject:d];
+    }
+    
+    
     
     realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];
     
@@ -104,10 +113,11 @@
         
         if(flagShowing){
             CGPoint endPoint=[[touches anyObject] locationInView:self.view];
+            [realSenseView removeFromSuperview];
+            flagShowing=NO;
             if(touchPoint.y-endPoint.y>100){
-                [realSenseView removeFromSuperview];
+                
                 [realSenseView showOnTV];
-                flagShowing=NO;
                 animeView.frame=CGRectMake(0, 44, 320, 420);
                 [self.view addSubview:animeView];
                 [UIView beginAnimations:@"state" context:nil];
@@ -119,8 +129,9 @@
                 animeView.frame=CGRectMake(0,-420, 320, 420);
                 [UIView commitAnimations];
             }
-            else{
-                
+            else if(touchPoint.y-endPoint.y<-100){
+                HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+                [[appDelegate getTVController] pickRouteAtIndex:0 ];
             }
         }
     }
@@ -209,7 +220,7 @@
     [alertView dismissWithClickedButtonIndex:0 animated:YES];
     
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-     [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
+    [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
 }
 
 @end
