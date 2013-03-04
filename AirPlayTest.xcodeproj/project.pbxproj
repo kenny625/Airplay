@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31EDF84016E4676900B395D0 /* RealSenseTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EDF83F16E4676900B395D0 /* RealSenseTarget.m */; };
+		31EDF84216E46F6E00B395D0 /* tvicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31EDF84116E46F6E00B395D0 /* tvicon.jpg */; };
 		31F94DF016E3626500924C83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DEF16E3626500924C83 /* CoreLocation.framework */; };
 		31F94DF216E3627300924C83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DF116E3627300924C83 /* QuartzCore.framework */; };
 		31F94DF416E3627C00924C83 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F94DF316E3627C00924C83 /* CoreMotion.framework */; };
@@ -46,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31EDF83E16E4676900B395D0 /* RealSenseTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealSenseTarget.h; sourceTree = "<group>"; };
+		31EDF83F16E4676900B395D0 /* RealSenseTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealSenseTarget.m; sourceTree = "<group>"; };
+		31EDF84116E46F6E00B395D0 /* tvicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tvicon.jpg; sourceTree = "<group>"; };
 		31F94DEF16E3626500924C83 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		31F94DF116E3627300924C83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31F94DF316E3627C00924C83 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				31F94DFE16E3665700924C83 /* photo.jpg */,
+				31EDF84116E46F6E00B395D0 /* tvicon.jpg */,
 				8C1E511516DCF25800F19D28 /* MPAudioDeviceController.h */,
 				8C1E50E516DCEDA800F19D28 /* HWAppDelegate.h */,
 				8C1E50E616DCEDA800F19D28 /* HWAppDelegate.m */,
@@ -167,6 +173,8 @@
 				31F94E0716E37E1400924C83 /* SetTVViewController.m */,
 				31F94DF816E3657600924C83 /* RealSenseView.h */,
 				31F94DF916E3657600924C83 /* RealSenseView.m */,
+				31EDF83E16E4676900B395D0 /* RealSenseTarget.h */,
+				31EDF83F16E4676900B395D0 /* RealSenseTarget.m */,
 				31F94DFB16E3658A00924C83 /* DisplayData.h */,
 				31F94DFC16E3658A00924C83 /* DisplayData.m */,
 			);
@@ -284,6 +292,7 @@
 				8C1E50ED16DCEDA800F19D28 /* Default-568h@2x.png in Resources */,
 				8C1E50F016DCEDA800F19D28 /* MainStoryboard.storyboard in Resources */,
 				31F94DFF16E3665700924C83 /* photo.jpg in Resources */,
+				31EDF84216E46F6E00B395D0 /* tvicon.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +335,7 @@
 				31F94DFD16E3658A00924C83 /* DisplayData.m in Sources */,
 				31F94E0216E3710600924C83 /* TestModeViewController.m in Sources */,
 				31F94E0816E37E1400924C83 /* SetTVViewController.m in Sources */,
+				31EDF84016E4676900B395D0 /* RealSenseTarget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

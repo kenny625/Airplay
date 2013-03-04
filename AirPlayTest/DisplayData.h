@@ -13,7 +13,7 @@
     int selfId;
     UIColor* color;
     bool flagSelect;
-    int selectSize;
+
     NSString* name;
     
 }
@@ -24,7 +24,5 @@
 -(UIColor*)getColor;
 -(void)setSelect:(bool)f;
 -(bool)getSelect;
--(void)setSize:(int)s;
--(int)getSize;
 -(NSString*)getName;
 @end

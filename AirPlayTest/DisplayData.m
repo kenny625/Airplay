@@ -63,12 +63,7 @@ return color;
 -(bool)getSelect{
     return flagSelect;
 }
--(void)setSize:(int)s{
-    selectSize=s;
-}
--(int)getSize{
-    return selectSize;
-}
+
 -(NSString*)getName{
     return name;
 }

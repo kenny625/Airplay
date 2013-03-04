@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DisplayData.h"
-
+#import "RealSenseTarget.h"
 @interface RealSenseView : UIView{
     Boolean flagShowing;
     CGPoint touchPoint;
     int targetCount;
     int targetWidth;
     NSMutableArray* targets;
+    NSMutableArray* realSenseTargets;
     float pointDegree;
 }
 - (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t;
