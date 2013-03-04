@@ -66,25 +66,32 @@
         }
         [routes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            if ([[obj objectForKey:@"RouteSupportsAirPlayScreen"] boolValue]) {
+            if ([[obj objectForKey:@"RouteSupportsAirPlayVideo"]intValue]==1
+                ||[[obj objectForKey:@"RouteSupportsAirPlayScreen"] boolValue]
+                ) {
+                NSLog(@"is airplay");
                 NSDictionary *info = [obj objectForKey:@"AirPlayPortExtendedInfo"];
                 NSString *deviceID = [info objectForKey:@"deviceID"];
                 NSString *deviceName=[obj objectForKey:@"RouteName"];
                 
-                if ([[info objectForKey:@"uid"] isEqualToString:[NSString stringWithFormat:@"%@-screen", deviceID]]) {
+                if ([[info objectForKey:@"uid"] isEqualToString:[NSString stringWithFormat:@"%@-screen", deviceID]]
+                    ||
+                    [[info objectForKey:@"uid"] isEqualToString:[NSString stringWithFormat:@"%@-airplay", deviceID]]
+                    ) {
                     
                     DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:deviceName];
                     [d setTVID:idx];
                     [tableData addObject:d];
                     [tableView reloadData];
-                    NSLog(@"%@  ",obj);
                     
-                    /*
+                    
+                    NSLog(@"idx=%d",idx);
                      [audoDeviceController pickRouteAtIndex:idx];
                      //有多台apple TV時，把這個idx存到一個地方，之後就可以根據idx選要用哪一台mirror
-                     */
+                     
                 }
             }
+            NSLog(@"%@  ",obj);
         }];
     }];
     

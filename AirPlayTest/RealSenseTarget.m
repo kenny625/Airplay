@@ -19,7 +19,6 @@
         
         UILabel* label=[[UILabel alloc]initWithFrame:CGRectMake(0,0, 100,20)];
         [label setText:[target getName]];
-//        [label setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
         [label setTextColor:[UIColor whiteColor]];
         [label setBackgroundColor: [UIColor clearColor]];
         [self addSubview:label];
@@ -78,9 +77,6 @@ return self;
     return selectSize;
 }
 -(void)setSelect:(bool)f{
-    if(f){
-    NSLog(@"set select");
-    }
     flagSelect=f;
     [self setSize:3];
 }

@@ -17,14 +17,14 @@
     [super viewDidLoad];
     
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
-    tableData=[appDelegate getTargets]; 
+    tableData=[appDelegate getTargets];
     
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];
     
-     realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];    
     flagShowing=NO;
     
     //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
-    alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"確認", nil];
+    alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"", nil];
     //    [alertView setBackgroundColor:[UIColor redColor]];
     tableView=[[UITableView alloc] initWithFrame:CGRectMake(10, 40, 264, 150)
                                            style:UITableViewStyleGrouped];
@@ -191,6 +191,14 @@
     
     return 1;
     
+}
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"select %d",indexPath.row);
+    
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+    
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:indexPath.row] getTVID]];
 }
 
 

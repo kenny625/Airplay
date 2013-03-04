@@ -20,7 +20,7 @@
     bool flagShowing;
     CGPoint touchPoint;
     
-    NSArray* tableData;
+    NSMutableArray* tableData;
 }
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
