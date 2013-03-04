@@ -28,6 +28,29 @@
     degree=d;
     return self;
 }
+-(id)initWithId:(int) i Degree:(float)d Name:(NSString*)n{
+    self=[super init];
+    selfId=i;
+    name=n;
+    switch (selfId) {
+        case 0:
+            color=[UIColor colorWithRed:221/255.f green:166/255.f blue:40/255.f alpha:1];
+            break;
+            
+        case 1:
+            color=[UIColor colorWithRed:155/255.f green:186/255.f blue:59/255.f alpha:1];
+            break;
+            
+        case 2:
+            color=[UIColor colorWithRed:91/255.f green:182/255.f blue:185/255.f alpha:1];
+            break;
+    }
+    degree=d;
+    return self;
+}
+-(void)setDegree:(float)d{
+    degree=d;
+}
 -(float)getDegree{
     return degree;
 }
@@ -45,5 +68,8 @@ return color;
 }
 -(int)getSize{
     return selectSize;
+}
+-(NSString*)getName{
+    return name;
 }
 @end

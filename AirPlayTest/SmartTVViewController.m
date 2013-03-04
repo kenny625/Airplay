@@ -12,12 +12,17 @@
 @synthesize locationManager;
 - (void)viewDidLoad
 {
-
-    tableData = [[NSArray alloc] initWithObjects:@"LivingRoom" , @"BedRoom" , @"DiningRoom"  , nil];
-    [super viewDidLoad];
-    flagShowing=NO;
     
-    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45)];
+    
+    [super viewDidLoad];
+    
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    tableData=[appDelegate getTargets]; 
+    
+    
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData];
+    
+    flagShowing=NO;
     
     //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];
     alertView=[[UIAlertView alloc]initWithTitle:@"分享" message:@"\n\n\n\n\n\n\n" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"確認", nil];
@@ -53,16 +58,18 @@
     animeView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 44, 320, 420)];
     [animeView setImage:[UIImage imageNamed:@"photo.jpg"]];
     [photoView setBackgroundColor:[UIColor redColor]];
+    
     //campass
-    locationManager=[[CLLocationManager alloc] init];
-	locationManager.delegate=self;
-    locationManager.headingFilter = 3;
-    
-    if (locationManager.headingAvailable){
-        NSLog(@"start campass");
-        [locationManager startUpdatingHeading];
+    if([_mode integerValue]==1){
+        locationManager=[[CLLocationManager alloc] init];
+        locationManager.delegate=self;
+        locationManager.headingFilter = 3;
+        
+        if (locationManager.headingAvailable){
+            NSLog(@"start campass");
+            [locationManager startUpdatingHeading];
+        }
     }
-    
 }
 -(void)clickRightButton{
     if([_mode integerValue]==0){
@@ -168,14 +175,14 @@
         cell = [[UITableViewCell alloc] initWithFrame:CGRectZero  reuseIdentifier:CellIdentifier] ;
         
     }
-    [[cell textLabel]  setText:[tableData objectAtIndex:indexPath.row]];
-    
+    DisplayData* d=[tableData objectAtIndex:indexPath.row];
+    [[cell textLabel]  setText:[d getName]];
     
     return cell;
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return tableData.count;
     
     
 }

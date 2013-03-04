@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "RealSenseView.h"
+#import "HWAppDelegate.h"
 @interface TestModeViewController : UIViewController<CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate>{
     RealSenseView* realSenseView;
     UIAlertView* alertView;

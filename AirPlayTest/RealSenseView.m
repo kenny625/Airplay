@@ -9,22 +9,18 @@
 #import "RealSenseView.h"
 
 @implementation RealSenseView
-- (id)initWithFrame:(CGRect)frame{
+
+- (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t{
     self=[super initWithFrame:frame];
     if(self){
         
         [self setBackgroundColor:[UIColor blackColor]];
         flagShowing=NO;
         
-        
-        targetCount=3;
+        targets=t;
+        targetCount=targets.count;
         targetWidth=360/(targetCount+1);
-        targets=[[NSMutableArray alloc]initWithCapacity:targetCount];
-        for(int i=0;i<targetCount;i++){
-            float t=(90+targetWidth/2+i*targetWidth)%360;
-            DisplayData* d=[[DisplayData alloc]initWithId:i Degree:t];
-            [targets addObject:d];
-        }
+
         
     }
     return self;
@@ -32,6 +28,9 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    if(targets.count==0){
+        return;
+    }
     float minD=360;
     int minID=-1;
     for(int i=0;i<targets.count;i++){
@@ -41,14 +40,19 @@
         if(tmpD<0){
             tmpD=-tmpD;
         }
+        
+        if(tmpD>180){
+            tmpD=360-tmpD;
+        }
         if(tmpD<minD){
             minD=tmpD;
             minID=i;
         }
-        if(tmpD<=90){
+        
+        if(tmpD<=60){
             [d setSize:2];
         }
-        else if(tmpD<180){
+        else if(tmpD<120){
             [d setSize:1];
         }
         else{

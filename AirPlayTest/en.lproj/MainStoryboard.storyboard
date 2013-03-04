@@ -21,7 +21,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgL-Xy-S8z">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgL-Xy-S8z">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="C4K-0y-NhH"/>
                                 </constraints>
@@ -46,8 +46,11 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="m46-GN-xsI" kind="modal" id="JTD-dt-JoQ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rh-f8-zhu">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rh-f8-zhu">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="77" id="gsu-9u-Paq"/>
                                 </constraints>
@@ -103,6 +106,89 @@
             </objects>
             <point key="canvasLocation" x="63" y="43"/>
         </scene>
+        <!--SetTV View Controller-->
+        <scene sceneID="Egr-zP-fGG">
+            <objects>
+                <viewController id="m46-GN-xsI" customClass="SetTVViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wBW-PT-Dxc">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObW-MO-a6R">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="zCY-Qb-d9n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="離開">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="m46-GN-xsI" eventType="touchUpInside" id="xQh-BM-4T3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="角度：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0f-C7-hbt">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlo-lU-EL9">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ELd-d5-LfY">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="333" id="IHa-bT-vGo"/>
+                                </constraints>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-UD-7au">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="162" id="Ppy-qh-L4B"/>
+                                    <constraint firstAttribute="height" constant="57" id="xm5-cD-JeK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="設定角度">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setDeg:" destination="m46-GN-xsI" eventType="touchUpInside" id="RS0-0v-V2l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mlo-lU-EL9" firstAttribute="baseline" secondItem="W0f-C7-hbt" secondAttribute="baseline" type="default" id="3jR-BD-cmz"/>
+                            <constraint firstItem="W0f-C7-hbt" firstAttribute="leading" secondItem="wBW-PT-Dxc" secondAttribute="leading" constant="11" id="8eW-I5-FeU"/>
+                            <constraint firstItem="ObW-MO-a6R" firstAttribute="bottom" secondItem="wBW-PT-Dxc" secondAttribute="bottom" type="default" id="CWm-vz-zEF"/>
+                            <constraint firstItem="wD6-UD-7au" firstAttribute="leading" secondItem="wBW-PT-Dxc" secondAttribute="leading" type="default" id="FND-hJ-wSd"/>
+                            <constraint firstItem="wD6-UD-7au" firstAttribute="bottom" secondItem="wBW-PT-Dxc" secondAttribute="bottom" type="default" id="JFt-hL-CRs"/>
+                            <constraint firstItem="W0f-C7-hbt" firstAttribute="top" secondItem="wBW-PT-Dxc" secondAttribute="top" constant="5" id="MBl-SC-Hfz"/>
+                            <constraint firstItem="ObW-MO-a6R" firstAttribute="trailing" secondItem="wBW-PT-Dxc" secondAttribute="trailing" type="default" id="U75-v6-e9o"/>
+                            <constraint firstItem="ObW-MO-a6R" firstAttribute="centerY" secondItem="wD6-UD-7au" secondAttribute="centerY" type="default" id="UPU-R6-Mfm"/>
+                            <constraint firstItem="ELd-d5-LfY" firstAttribute="leading" secondItem="wBW-PT-Dxc" secondAttribute="leading" type="default" id="cul-UC-Ef8"/>
+                            <constraint firstItem="ELd-d5-LfY" firstAttribute="top" secondItem="wBW-PT-Dxc" secondAttribute="top" constant="46" id="lPz-eK-Lp7"/>
+                            <constraint firstItem="Mlo-lU-EL9" firstAttribute="leading" secondItem="wBW-PT-Dxc" secondAttribute="leading" constant="56" id="pKh-XF-gyB"/>
+                            <constraint firstItem="ELd-d5-LfY" firstAttribute="trailing" secondItem="wBW-PT-Dxc" secondAttribute="trailing" type="default" id="zTy-ey-WaP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="degLabel" destination="Mlo-lU-EL9" id="LqD-an-FFi"/>
+                        <outlet property="tableView" destination="ELd-d5-LfY" id="rgS-Ws-2cn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aD7-QR-chw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="58" y="932"/>
+        </scene>
         <!--Test Mode View Controller-->
         <scene sceneID="TkI-Uv-SQ9">
             <objects>
@@ -120,7 +206,7 @@
         <!--SmartTV View Controller-->
         <scene sceneID="jra-1X-NTd">
             <objects>
-                <viewController id="RWG-1K-KDk" customClass="SmartTVViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="RWG-1K-KDk" customClass="SmartTVViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9vZ-EM-V42">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -142,6 +228,15 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SetTVViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetTVViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonClicked:"/>
+                <relationship kind="action" name="setDeg:"/>
+                <relationship kind="outlet" name="degLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="SmartTVViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SmartTVViewController.h"/>

@@ -15,7 +15,7 @@
 		31F94DFD16E3658A00924C83 /* DisplayData.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94DFC16E3658A00924C83 /* DisplayData.m */; };
 		31F94DFF16E3665700924C83 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31F94DFE16E3665700924C83 /* photo.jpg */; };
 		31F94E0216E3710600924C83 /* TestModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94E0116E3710600924C83 /* TestModeViewController.m */; };
-		31F94E0516E3742C00924C83 /* SetTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94E0416E3742C00924C83 /* SetTVViewController.m */; };
+		31F94E0816E37E1400924C83 /* SetTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F94E0716E37E1400924C83 /* SetTVViewController.m */; };
 		8C1E50D716DCEDA800F19D28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50D616DCEDA800F19D28 /* UIKit.framework */; };
 		8C1E50D916DCEDA800F19D28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50D816DCEDA800F19D28 /* Foundation.framework */; };
 		8C1E50DB16DCEDA800F19D28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E50DA16DCEDA800F19D28 /* CoreGraphics.framework */; };
@@ -58,8 +58,8 @@
 		31F94DFE16E3665700924C83 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
 		31F94E0016E3710600924C83 /* TestModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestModeViewController.h; path = ../TestModeViewController.h; sourceTree = "<group>"; };
 		31F94E0116E3710600924C83 /* TestModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModeViewController.m; path = ../TestModeViewController.m; sourceTree = "<group>"; };
-		31F94E0316E3742C00924C83 /* SetTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetTVViewController.h; path = ../SetTVViewController.h; sourceTree = "<group>"; };
-		31F94E0416E3742C00924C83 /* SetTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetTVViewController.m; path = ../SetTVViewController.m; sourceTree = "<group>"; };
+		31F94E0616E37E1400924C83 /* SetTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetTVViewController.h; path = ../SetTVViewController.h; sourceTree = "<group>"; };
+		31F94E0716E37E1400924C83 /* SetTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetTVViewController.m; path = ../SetTVViewController.m; sourceTree = "<group>"; };
 		8C1E50D316DCEDA800F19D28 /* AirPlayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPlayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1E50D616DCEDA800F19D28 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8C1E50D816DCEDA800F19D28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,8 +163,8 @@
 				31F94DF616E3656100924C83 /* SmartTVViewController.m */,
 				31F94E0016E3710600924C83 /* TestModeViewController.h */,
 				31F94E0116E3710600924C83 /* TestModeViewController.m */,
-				31F94E0316E3742C00924C83 /* SetTVViewController.h */,
-				31F94E0416E3742C00924C83 /* SetTVViewController.m */,
+				31F94E0616E37E1400924C83 /* SetTVViewController.h */,
+				31F94E0716E37E1400924C83 /* SetTVViewController.m */,
 				31F94DF816E3657600924C83 /* RealSenseView.h */,
 				31F94DF916E3657600924C83 /* RealSenseView.m */,
 				31F94DFB16E3658A00924C83 /* DisplayData.h */,
@@ -325,7 +325,7 @@
 				31F94DFA16E3657600924C83 /* RealSenseView.m in Sources */,
 				31F94DFD16E3658A00924C83 /* DisplayData.m in Sources */,
 				31F94E0216E3710600924C83 /* TestModeViewController.m in Sources */,
-				31F94E0516E3742C00924C83 /* SetTVViewController.m in Sources */,
+				31F94E0816E37E1400924C83 /* SetTVViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

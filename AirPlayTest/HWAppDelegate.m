@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    targets = [[NSMutableArray alloc]initWithCapacity:0];
     return YES;
 }
 							
@@ -42,5 +43,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+-(NSMutableArray*)getTargets{
+    return targets;
+}
 @end

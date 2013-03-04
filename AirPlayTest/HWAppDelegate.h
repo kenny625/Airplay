@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HWAppDelegate : UIResponder <UIApplicationDelegate>
+#import "DisplayData.h"
+@interface HWAppDelegate : UIResponder <UIApplicationDelegate>{
+    NSMutableArray* targets;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
+-(NSMutableArray*)getTargets;
 @end
