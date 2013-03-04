@@ -13,7 +13,7 @@
     int selfId;
     UIColor* color;
     bool flagSelect;
-
+    NSUInteger idx;
     NSString* name;
     
 }
@@ -25,4 +25,6 @@
 -(void)setSelect:(bool)f;
 -(bool)getSelect;
 -(NSString*)getName;
+-(void)setTVID:(NSUInteger) x;
+-(NSUInteger)getTVID;
 @end

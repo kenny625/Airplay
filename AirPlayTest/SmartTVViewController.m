@@ -20,8 +20,7 @@
     tableData=[appDelegate getTargets]; 
     
     
-    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData];
-    
+     realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];    
     flagShowing=NO;
     
     //    alertView=[[UIAlertView alloc]initWithFrame:CGRectMake(50,200,220,150)];

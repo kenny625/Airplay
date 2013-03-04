@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import "MPAudioDeviceController.h"
 #import "HWAppDelegate.h"
 
 @interface SetTVViewController : UIViewController<CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate>{

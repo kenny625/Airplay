@@ -27,6 +27,9 @@
 return self;
 
 }
+-(NSUInteger)getTVID{
+    return [target getTVID];
+}
 -(void)setDegree:(float)d{
     pointDegree=d;
     float x;
@@ -80,5 +83,8 @@ return self;
     }
     flagSelect=f;
     [self setSize:3];
+}
+-(bool)getSelect{
+    return flagSelect;
 }
 @end

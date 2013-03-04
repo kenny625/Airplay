@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DisplayData.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "MPAudioDeviceController.h"
 @interface HWAppDelegate : UIResponder <UIApplicationDelegate>{
     NSMutableArray* targets;
+    MPAudioDeviceController *audoDeviceController;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 -(NSMutableArray*)getTargets;
+-(MPAudioDeviceController *)getTVController;
 @end

@@ -14,6 +14,7 @@
 {
     // Override point for customization after application launch.
     targets = [[NSMutableArray alloc]initWithCapacity:0];
+    audoDeviceController = [[MPAudioDeviceController alloc] init];
     return YES;
 }
 							
@@ -45,5 +46,8 @@
 }
 -(NSMutableArray*)getTargets{
     return targets;
+}
+-(MPAudioDeviceController *)getTVController{
+    return audoDeviceController;
 }
 @end

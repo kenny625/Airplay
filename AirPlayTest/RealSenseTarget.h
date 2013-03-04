@@ -22,4 +22,6 @@
 -(void)setSize:(int)s;
 -(int)getSize;
 -(void)setSelect:(bool)f;
+-(bool)getSelect;
+-(NSUInteger)getTVID;
 @end

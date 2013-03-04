@@ -19,7 +19,7 @@
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
     tableData=[appDelegate getTargets];
     
-    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData];
+    realSenseView=[[RealSenseView alloc]initWithFrame:CGRectMake(0,0,320,45) Target:tableData Controller:[appDelegate getTVController]];
     
     flagShowing=NO;
     
@@ -106,6 +106,7 @@
             CGPoint endPoint=[[touches anyObject] locationInView:self.view];
             if(touchPoint.y-endPoint.y>100){
                 [realSenseView removeFromSuperview];
+                [realSenseView showOnTV];
                 flagShowing=NO;
                 animeView.frame=CGRectMake(0, 44, 320, 420);
                 [self.view addSubview:animeView];

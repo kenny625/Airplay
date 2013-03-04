@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
     
-   HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
     tableData=[appDelegate getTargets];
     [tableData removeAllObjects];
     [tableView setDelegate:self];
@@ -46,9 +46,8 @@
     
 }
 - (void)pickAMirroredRoute {
-    
-    MPAudioDeviceController *audoDeviceController = [[MPAudioDeviceController alloc] init];
-    audoDeviceController.routeDiscoveryEnabled = YES;
+    HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    MPAudioDeviceController *audoDeviceController = [appDelegate getTVController];    audoDeviceController.routeDiscoveryEnabled = YES;
     
     [audoDeviceController determinePickableRoutesWithCompletionHandler:^(NSInteger value) {
         NSMutableArray *routes = [NSMutableArray array];
@@ -67,25 +66,25 @@
         }
         [routes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            if ([[obj objectForKey:@"RouteSupportsAirPlayVideo"] boolValue]) {
+            if ([[obj objectForKey:@"RouteSupportsAirPlayScreen"] boolValue]) {
                 NSDictionary *info = [obj objectForKey:@"AirPlayPortExtendedInfo"];
                 NSString *deviceID = [info objectForKey:@"deviceID"];
                 NSString *deviceName=[obj objectForKey:@"RouteName"];
                 
-                DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:deviceName];
-                [tableData addObject:d];
-                [tableView reloadData];
-                NSLog(@"add object");
-                /*
-                 if ([[info objectForKey:@"uid"] isEqualToString:[NSString stringWithFormat:@"%@-airplay", deviceID]]) {
-                 
-                 NSLog(@"!!pick");
-                 [audoDeviceController pickRouteAtIndex:idx];
-                 //有多台apple TV時，把這個idx存到一個地方，之後就可以根據idx選要用哪一台mirror
-                 }
-                 */
+                if ([[info objectForKey:@"uid"] isEqualToString:[NSString stringWithFormat:@"%@-screen", deviceID]]) {
+                    
+                    DisplayData* d=[[DisplayData alloc]initWithId:tableData.count Degree:0 Name:deviceName];
+                    [d setTVID:idx];
+                    [tableData addObject:d];
+                    [tableView reloadData];
+                    NSLog(@"%@  ",obj);
+                    
+                    /*
+                     [audoDeviceController pickRouteAtIndex:idx];
+                     //有多台apple TV時，把這個idx存到一個地方，之後就可以根據idx選要用哪一台mirror
+                     */
+                }
             }
-            //            NSLog(@"%@  ",obj);
         }];
     }];
     

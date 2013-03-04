@@ -67,4 +67,10 @@ return color;
 -(NSString*)getName{
     return name;
 }
+-(void)setTVID:(NSUInteger) x{
+    idx=x;
+}
+-(NSUInteger)getTVID{
+    return idx;
+}
 @end
