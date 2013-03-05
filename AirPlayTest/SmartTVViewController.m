@@ -16,6 +16,11 @@
     
     [super viewDidLoad];
     
+    taskCount=0;
+    nowTask=-1;
+    nowStatus=-1;
+    
+    
     flagShowing=NO;
     //toast
     toast=[[UILabel alloc]initWithFrame:CGRectMake(50, 200, 200, 100)];
@@ -26,6 +31,7 @@
     [toast setNumberOfLines:2];
     //realsense
     HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate getTVController] pickRouteAtIndex:0];
     //    tableData=[[appDelegate getTargets] copy];
     tableData=[appDelegate getTargets];
     
@@ -127,7 +133,7 @@
             flagShowing=NO;
             if(touchPoint.y-endPoint.y>100){
                 
-                [realSenseView showOnTV];
+                [self changeStatus:[realSenseView showOnTV]];
                 animeView.frame=CGRectMake(0, 44, 320, 420);
                 [self.view addSubview:animeView];
                 [UIView beginAnimations:@"state" context:nil];
@@ -138,10 +144,12 @@
                 
                 animeView.frame=CGRectMake(0,-420, 320, 420);
                 [UIView commitAnimations];
+                
             }
             else if(touchPoint.y-endPoint.y<-100){
                 HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
                 [[appDelegate getTVController] pickRouteAtIndex:0 ];
+                [self changeStatus:-1];
             }
         }
     }
@@ -172,19 +180,73 @@
     else if(buttonIndex==0){
         HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate getTVController] pickRouteAtIndex:0];
+        [self changeStatus:-1];
     }
     
     else{
         NSLog(@"%d",buttonIndex);
         HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate getTVController] pickRouteAtIndex:[[tableData objectAtIndex:(buttonIndex-1)] getTVID]];
+        [self changeStatus:buttonIndex-1];
         
     }
     [toast removeFromSuperview];
-    [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
+    
 }
+
+-(void)changeStatus:(int)s{
+    nowStatus=s;
+    if(nowStatus==nowTask){
+        [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
+    }
+}
+
 -(void)showToast{
-    [toast setText:@"請投影照片到\napple tv"];
+    taskCount++;
+    if(taskCount>10){
+        HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [[appDelegate getTVController] pickRouteAtIndex:0 ];
+        [self.presentingViewController dismissModalViewControllerAnimated:YES];
+    }
+    nowTask = arc4random() % 2;
+    if(nowTask==nowStatus){
+        nowTask=-1;
+        
+    }
+    if(nowTask>=0){
+        [toast setText:[NSString stringWithFormat:@"請投影照片到\n%@",[[tableData objectAtIndex:nowTask]getName]]] ;
+    }
+    else{
+        [toast setText:@"請取消投影照片"] ;
+    }
     [self.view addSubview:toast];
+    
+}
+
+
+- (void)writeIntoFile_inFile:(NSString*)fileNameInput andContent:(NSString*)stringInput andAppend:(BOOL)appendInput{
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileName = fileNameInput;
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        [[NSFileManager defaultManager] createFileAtPath:fileAtPath contents:nil attributes:nil];
+    }
+    
+    NSString *stringNew=stringInput;
+    
+    NSString *aString;
+    if(appendInput){
+        aString=[NSString stringWithFormat:@"%@\r%@",[[NSString alloc]initWithData:[NSData dataWithContentsOfFile:fileAtPath] encoding:NSUTF8StringEncoding],stringNew];//把舊的文件先換行，再把新的加上去
+    }else{
+        aString=[NSString stringWithFormat:@"%@",stringNew];//把舊的文件先換行，再把新的加上去
+    }
+    
+    [[aString dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fileAtPath options:NSDataWritingAtomic error:nil];
+    //
+    //
+    // Build the path...
+    NSString *SP=[[NSString alloc]initWithData:[NSData dataWithContentsOfFile:fileAtPath] encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",SP);
 }
 @end

@@ -25,6 +25,6 @@
 }
 - (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t Controller:(MPAudioDeviceController *)c;
 -(void)updateDegree:(float)d;
--(void)showOnTV;
+-(int)showOnTV;
 -(void)setShowing:(bool)f;
 @end

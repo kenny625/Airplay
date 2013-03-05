@@ -10,7 +10,7 @@
 
 @implementation RealSenseView
 
-- (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t Controller:(MPAudioDeviceController *)c{
+- (id)initWithFrame:(CGRect)frame Target:(NSMutableArray*)t Controller:(MPAudioDeviceController *)c {
     self=[super initWithFrame:frame];
     if(self){
         audoDeviceController=c;
@@ -110,13 +110,14 @@
     [(RealSenseTarget*)[realSenseTargets objectAtIndex:minID]setSelect:YES];
     [self bringSubviewToFront:[realSenseTargets objectAtIndex:minID]];
 }
--(void)showOnTV{
-    for(RealSenseTarget* t in realSenseTargets){
+-(int)showOnTV{
+    
+    for(int i=0;i<realSenseTargets.count;i++){
+        RealSenseTarget* t=[realSenseTargets objectAtIndex:i];
         if([t getSelect]){
             [audoDeviceController pickRouteAtIndex:[t getTVID]];
-            break;
+            return i;
         }
-        
     }
 }
 -(void)touchAt:(int)i{
