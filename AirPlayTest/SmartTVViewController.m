@@ -93,7 +93,7 @@
     }
     
     
-    [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
+    [self performSelector:@selector(showToast) withObject:nil afterDelay:5];
 }
 -(void)clickLeftButton{
     UIStoryboard *storyboard = self.storyboard;
@@ -190,14 +190,15 @@
         [self changeStatus:buttonIndex-1];
         
     }
-    [toast removeFromSuperview];
-    
+
+
 }
 
 -(void)changeStatus:(int)s{
     nowStatus=s;
     if(nowStatus==nowTask){
-        [self performSelector:@selector(showToast) withObject:nil afterDelay:3];
+        [toast removeFromSuperview];
+        [self performSelector:@selector(showToast) withObject:nil afterDelay:5];
     }
 }
 
@@ -207,6 +208,7 @@
         HWAppDelegate *appDelegate = (HWAppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate getTVController] pickRouteAtIndex:0 ];
         [self.presentingViewController dismissModalViewControllerAnimated:YES];
+        return;
     }
     nowTask = arc4random() % 2;
     if(nowTask==nowStatus){
